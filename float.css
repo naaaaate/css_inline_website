@@ -33,8 +33,27 @@ floats will wrap
 -so add float prop to media queries and set to initial value
 
 
+float the columns:
+-when we float col
+  float: left;
+  width: 30%;
+REMEMEBER: the parent container holding these columns will collapse simply bc we used float... which means everything will fall upwards to the parent element.. which is why the footer falls upwards.
+-so in order to fix this like we did the header.. we use the clearfix.
+---remmeber that clearfix when added to the parent element will cause the parent element to ignore its children eleemnts that are floated and therefore impose its table display..
+--its almost like it puts everything back in doc flow..
 
 
+img:
+-we added images that pull from internet.
+-gave it a float left in that primart content
+-also gave the img a margin right and not hte text p.
+
+
+
+
+media queries:
+-need to add the col and feat img so tht when we resize it looks stacked.;
+-also give width of img on separate line a width of 100% when we resize so it doesnt extend a scroll bar outside the area.
 
 */
 
@@ -70,10 +89,11 @@ body {
 /* Header, Banner and Footer Layout
 ================================ */
 
-.main-wrapper {
+/*.main-wrapper {
   width: 90%;
   margin: auto;
-}
+}*/
+
 .main-header {
   /*min-height: 100px; take this out so we can use clear-fix*/
   padding: 15px;
@@ -133,7 +153,35 @@ body {
 
 .col {
   padding: 20px;
+  float: left;
+  width: 30%;
 }
+
+
+.primary-content {
+  width: 40%;
+}
+.col:last-child {
+  float: right;
+}
+
+
+
+
+  /* Imagery
+  ================================ */
+
+  .feat-img {
+    width: 50%;
+    float: left;
+    margin-right: 25px;
+    border: solid 1px;
+    padding: 5px;
+  }
+
+
+
+
 
 
 /* Clearfix
@@ -157,10 +205,15 @@ body {
 @media (max-width: 768px) {
   .main-wrapper,
   .main-nav li,
-  .main-logo {
+  .main-logo,
+  .col,
+  .feat-img {
     width: initial;
     height: initial;
     float: initial;
+  }
+  .feat-img {
+    width: 100%;
   }
   .main-logo {
     margin-right: 0;
