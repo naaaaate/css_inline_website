@@ -21,6 +21,8 @@ links hover area: make it larger;
 ;
 */
 
+
+
 body {
   font: normal 1.1em/1.5 sans-serif;
   color: #222;
@@ -29,7 +31,7 @@ body {
 
 .main-wrapper {
   /*background: white;*/
-  margin: 0 auto;
+  margin: auto;
   width: 90%;
 }
 
@@ -64,7 +66,7 @@ body {
 
 .main-logo {
   margin-right: 50px; /*--wont work bc its a display:; inline element*/
-  width: 200px;
+  width: 120px;
   /*margin-top: 50px; --wont work bc its a display:; inline element*/
   margin-top: 0;
   margin-bottom: 0;
@@ -85,4 +87,13 @@ body {
 .main-nav li {
     /*margin-right: -5px; will push li against each other*/
     margin-right: 10px;
+    margin-top: 15px;
 }
+
+
+
+
+
+
+
+
