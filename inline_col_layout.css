@@ -1,0 +1,196 @@
+/*
+Dispaly: inline-block column layout:
+
+
+col class
+-when we give col display of inline block .. we also give primary and sec content divs 60 and 40 %
+which should equal 100 but it moves the second div to next line...
+to fix we know that the right margin has to be negative!!! bc its looking like whitespace.
+
+vertical align:
+-this property works good with inline block elements.
+-we can see our col divs align vertically on bottom by default so we change to top.
+
+sticky footer:
+-we want the footer to be all the way at thebottom..
+-so give all html body main wrapper and col a height of 100%..
+-the height of 100% is calculated based on height of parent element.. so if height of all main containers are set to 100% we get desired result of footer all the way at bottom...
+
+
+
+main banner
+-we added this and some style
+
+media queries
+-we want cols to stack wen window resized..
+-so when we resize page lets add our col property to the media query list..
+
+
+*/
+
+
+
+body {
+  font: normal 1.1em/1.5 sans-serif;
+  color: #222;
+  background-color: #edeff0;
+}
+
+
+html,
+body,
+.main-wrapper,
+.col {
+  height: 100%;
+}
+
+
+
+/*.main-wrapper {
+  background: white;
+  margin: auto;
+  width: 90%;
+}*/
+
+
+/*BOX SIZING PROPERTY -- forces padding into width and height of declared header*/
+* {
+  box-sizing: border-box;
+}
+
+
+/* Layout Element Colors
+================================ */
+
+.main-header       { background-color: #384047; } /*#384047*/
+.main-logo         { background-color: #5fcf80; }
+.main-nav li       { background-color: #3f8abf; }
+.primary-content   { background-color: #caebf6; }
+.secondary-content { background-color: #bfe3d0; }
+.main-footer       { background-color: #b7c0c7; }
+
+
+/* Header, Banner and Footer Layout
+================================ */
+.main-header {
+  padding: 20px;
+  /*white-space: nowrap;  when we resize page it will not wrap li's to next line.*/
+  display: table;
+  width: 100%;
+  min-height: 150px;
+}
+
+
+.main-banner {
+  background: #ebedee;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+.main-logo,
+.main-nav,
+.main-nav li {
+  display: inline-block;
+}
+
+
+.main-logo,
+.main-nav {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+.main-logo,
+.main-nav li {
+  border-radius: 5px;
+}
+
+.main-logo {
+/*  margin-right: 50px; /*--wont work bc its a display:; inline element
+  margin-top: 50px; --wont work bc its a display:; inline element
+  margin-top: 0;
+  margin-bottom: 0;
+
+---we can remove all margins bc our table display mode will take care of all of this.
+
+*/
+  height: 100px;
+  width: 120px;
+}
+
+
+.main-nav {
+  padding-left: 50px;
+}
+
+
+.main-logo a,
+.main-nav a {
+  display: block;
+  color: white;
+  text-decoration: none; /*this will make underlines not appear*/
+  padding: 10px 20px;
+  text-align: center;
+
+}
+
+
+.main-nav li {
+    /*margin-right: -5px; will push li against each other*/
+    margin-right: 10px;
+    /*margin-top: 15px;*/
+}
+
+
+.main-footer {
+  text-align: center;
+  padding: 20px;
+}
+
+
+/* Column Layout
+================================ */
+
+.col {
+  display: inline-block;
+  padding: 20px;
+  margin-right: -5px;
+  vertical-align: top;
+}
+.primary-content {
+  width: 60%;
+}
+.secondary-content {
+  width: 40%;
+}
+
+
+
+
+/*Media queries*/
+
+@media (max-width: 768px) {
+  .main-logo,
+  .main-nav,
+  .main-nav li,
+  .col {
+    display: block;
+    height: initial;
+    width: initial;
+    margin: initial;
+  }
+  .main-nav {
+    padding-left: initial;
+  }
+  .main-nav li {
+    margin-top: 15px;
+  }
+  .main-banner {
+    display: none;
+  }
+
+}
+
+
+
