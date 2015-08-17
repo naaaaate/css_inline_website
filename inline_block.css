@@ -1,6 +1,24 @@
 /*
 Dispaly: Inline-block:
 
+-if header elements are inline they wrap really bad..
+-if we make them display: inline-block ;  they will wrap nicely to next line as block! looks more fluid.
+-also with inline-block.. we can set margin-top and bottom and width of logo to block elements! and  they will resize!
+
+--so inline-block : treats elements as inline level elements... that can be styled the same way as block level elements. BUT they are still distributed or displayed on the page in the same line with other elements!!  ie: a logo will be inline with the nav li 's
+
+-notice that when we change our logo to inline-block element, the top-margin is again restored and h1 and other heading elements have a top and bottom margin by default that normalize does not reset!!!
+  --so we can go into the main-logo and set its margin top and bottom to 0.
+
+
+links hover area: make it larger;
+-we need to let links or a tags take up the full width and height of their parents container..
+-the reason links have a small clickable or hover area by default and dont auto take up parent container is bc a tags or links are inline by default!
+--to do so we need to change our a tags to inline-block or block! REMEBER: Display values are not inherited by child elements!!!;
+
+--the anchor elements are block elements, but dont display on own line like a block elemetnt! why? bc they are inside of parent elements which are inline-block elemnts. so they display inline still!
+
+;
 */
 
 body {
@@ -36,20 +54,33 @@ body {
 .main-logo,
 .main-nav,
 .main-nav li {
-  display: inline;
+  display: inline-block;
 }
 
 .main-logo,
 .main-nav li {
-  padding: 10px 20px;
   border-radius: 5px;
 }
 
 .main-logo {
   margin-right: 50px; /*--wont work bc its a display:; inline element*/
   width: 200px;
-  margin-top: 50px; /*--wont work bc its a display:; inline element*/
+  /*margin-top: 50px; --wont work bc its a display:; inline element*/
+  margin-top: 0;
+  margin-bottom: 0;
 }
+
+
+.main-logo a,
+.main-nav a {
+  display: block;
+  color: white;
+  text-decoration: none; /*this will make underlines not appear*/
+  padding: 10px 20px;
+  text-align: center;
+
+}
+
 
 .main-nav li {
     /*margin-right: -5px; will push li against each other*/
