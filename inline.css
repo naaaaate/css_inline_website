@@ -1,0 +1,102 @@
+/*
+Display: Inline:
+
+
+main-wrapper
+  - let you center content to keep it from being too wide.
+  - it gives us more control of our layout
+
+Remember:
+-you get a 20px gap at top of page even with a normalize file .. this is bc of the logo's h1 heading element.. h1 elements have a 20px top margin.
+--this is a margin collapsing issue.. happens bc no border, padding, content etc nothing to separate the top border of our block level body element w the top margin of its first child.
+--so the body from main wrapper .. theres nothing separating them.. therefore everything collapses or everything falls to the top of the page.. so header falls to top, h1 logo falls to the top, nav margin falls to top.. etc..
+
+
+Inline:
+-if we give main logo a display: inline.. it no longer takes whole width like a block element, and also allows u to place elemnts next to it (or inline with it.);
+-if we add the main-nav class to this inline property.. we still see nav items stacked.. why? bc the li items inside the ul main nav class are stil block level elements.
+--in order to see elements inline.. we need to target main-nav li with the inline property as well.
+
+
+padding
+-lets give our logo and nav li's some padding and margin to separate each other..
+-padding: 10px 20px;
+-border-radius:5px;
+
+
+width/margin:
+-also lets give main logo a Top Margin, Margin right and a width.
+-***REMEMBER: inline elements do not respond or do anything or resize when u edit their top margin and widths!
+--TOP MARGIN AND WIDTH Properties --these have no effect on INLINE Elements.
+---So when we set margin-top 50px; and width:200px; .. these will not resize
+---only the margin-right: 50px; will resize..
+
+
+
+List item (li) whitspace:
+-notice there is auto whitespace bt the list items and those are there bc its almost like spaces bt words .. in the html the browser sees the spaces and indents bt the list items.. if u want them to push up against each other u need to give negative margins in the css..
+-so we can give:
+-- .main-nav li {
+    margin-right: -5px;
+}
+
+
+PROBLEM with inline:
+-when u resize page, the li's will wrap to next line.. to fix we can set on the header a white-space: no wrap
+property or use inline-block elemnts;
+-BUT if we set header to nowrap, wen we resize page, the li's will extend outside of the header.
+
+*/
+
+body {
+  font: normal 1.1em/1.5 sans-serif;
+  color: #222;
+  background-color: #edeff0;
+}
+
+.main-wrapper {
+  /*background: white;*/
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* Layout Element Colors
+================================ */
+
+.main-header       { background-color: #384047; } /*#384047*/
+.main-logo         { background-color: #5fcf80; }
+.main-nav li       { background-color: #3f8abf; }
+.primary-content   { background-color: #caebf6; }
+.secondary-content { background-color: #bfe3d0; }
+.main-footer       { background-color: #b7c0c7; }
+
+
+/* Header, Banner and Footer Layout
+================================ */
+.main-header {
+  padding: 20px;
+  white-space: nowrap; /*when we resize page it will not wrap li's to next line.*/
+}
+
+.main-logo,
+.main-nav,
+.main-nav li {
+  display: inline;
+}
+
+.main-logo,
+.main-nav li {
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.main-logo {
+  margin-right: 50px; /*--wont work bc its a display:; inline element*/
+  width: 200px;
+  margin-top: 50px; /*--wont work bc its a display:; inline element*/
+}
+
+.main-nav li {
+    /*margin-right: -5px; will push li against each other*/
+    margin-right: 10px;
+}
