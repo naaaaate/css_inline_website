@@ -1,3 +1,21 @@
+/*
+notice how the main logo is inside a list item in the main nav.. it makes using flex more manageable.
+
+display : flex;
+-in media queries.. the flex value makes li's inside main nav, flex items.. which by default lays everything out in a row.. this is called the flex direction.
+
+
+flex:grow;
+-controls amount of space a flex item takes up in the main nav.
+-so if we want all our links to be equal lengths and evenly distributed in header, go into main-nav li rule and give it flex-grow: 1;
+--the value 1 reps the ratio of free space we want the list items to take up.
+--so when set to 1, the space in the main nav is equally distributed bt all flex items.. so they all take up same amount of space in header..
+---if we gave the logo a flexgrow of 2.. it would take up the space of 2 flex items and the li's would be evenly distributed..
+
+
+
+*/
+
 /* Page Styles
 ================================ */
 
