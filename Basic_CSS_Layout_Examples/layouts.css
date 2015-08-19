@@ -1,0 +1,289 @@
+/*
+
+
+Box-Sizing - this will push all padding and margin into ur defined box's width and height so that it doesnt add onto  the width and height u declare.
+
+percentages on width - this will make ur imgs and divs more fluid as they take up a percentage of the width of its parent element.. a lot of times the body.
+
+max width - this keeps image from growing and becoming unreadable as the page gets bigger.
+
+--------------------------------------------------------------------------------------------
+in html element  - everything is considered background layer except margin..
+every element has background layer that is transparent by default.
+-we can fill that layer w color or image.
+
+background props:
+background-color - sets color
+background-image - url value to find image.
+  --background-image: url('../img/mountains.jpg');
+
+-background image is tiled and repeated auto.. so set it to no-repeat
+-set main-header bck img size to 40% .. percentage is relative to width and height of the background area of the element.. not w and h of actual image.
+  -this makes it 40% size of the background area of the main header.
+
+background-repeat: no-repeat;
+--the default value is repeat.
+--no repeat will place img in top left corner .
+
+
+its good to keep a background color in case user disables imgs in browser or its unavailable.
+
+--------------------------------------------------------------------------------------------
+
+background-position: center;
+--this accepts position keywords, length, percentages.
+--first value is horizontal position.. center puts it in center of containing elemnt.
+--second val is the vertical position of img
+
+background-size: cover;
+--adjusts background to see full image in its container.
+--can be used for full page background images.
+
+background property:
+color, img, no-repeat center / cover
+
+--------------------------------------------------------------------------------------------
+
+Float Layouts:
+-elements floated are taken out of normal doc of page and placed on elements left or right side of its container... which causes other elements to wrap around it.
+-so ie:
+  --to float nested divs.. give both nested divs inside parent a class ie: resorts and tips;
+    --give cols a width like 46.5% --now each div takes 46% of parent container
+    --now layout side by side by floating them.
+    --target resorts and float it left.
+    --target tips and float it right.
+    --both are outside normal flow of container.
+      --but common issue..is a block element w floated children ..  its height will collapse.
+      --the parent doesnt expand to completely surround the floated children columns, bc the browser isnt accounting for the height of the floated cols.. bc REMEMEBR: they are no longer in the normal flow of the page... also the footer wraps around our cols.;
+
+      ---so we need to clear the floats:
+          --clear the collapsed space around our floated cols.
+          --we want parent container that holds floats to stretch up and accomodate or surround and hold the floats;
+          --if we set the parent div to:
+
+          overflow: auto;
+            -browser can account for height of floated cols.
+            -and the parent div is no longer collapsed.
+            -this is not most ideal solution.. bc overflow may cause scrollbars or content to be cutoff..
+
+          BEST thing to use is: CLEARFIX!!!; --for collapsed parent divs!!!
+
+          .group:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+          -group is a common name used bc it will group together the child elements in the parent container and clear the floats on them or ignore the fact that they are floated outside and include them inside its container as normal.
+          -it generates blank psuedo element after the content of our div..
+            --said another way.. it makes an element after the div that has a class name of group on it... so we can actually generate or create some content w css
+          -the value clear is key!!!
+            -the value both clears or gets rid of any collapsed space created by floats on both sides of the container.
+
+   -so floats are good way to easily change order of columns by left or right.
+--------------------------------------------------------------------------------------------
+
+Lists properties:
+
+list-style-type : square;  ..can be circle, none, disc, square, etc..  disc is default
+-can add any type of list marker to ordered or unordered lists
+--can also do value: decimal-leading-zero;  --shows 01. 02. 03. etc..
+
+list items:
+-by default lists are indented w left padding..
+-can give border style with property:
+
+border: 1px solid black
+
+by default, browser displays list styles outside the border..
+  -we can set list numbes and shapes inside of a border by:
+    ul, ol {
+     list-style-position: inside;
+    }
+--this will put list markers inside context of our list.
+
+can also do padding-left: 0;
+--this will align the list with rest of our content.. bc again.. all li's are indented or have left padding by default
+
+
+margin-left: 0;
+--use this for ie10 browsers bc they dont have padding left but use margin left
+
+margin-bottom: 10px;
+--use this to give li's space between them..
+
+again... list-style-position: inside; will put numbers and shapes inside a border.
+--without this, the numbers will be outside the left alignemnet of other content.. and this is default..
+
+
+
+
+*/
+
+/* Base Styles -------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #878787;
+  margin: 0;
+  font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 5.625rem; /* 90px/16px  */
+  color: rgba(255, 255, 255, 1);
+  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: 3.3125em; /* 53px/16px  */
+  font-weight: normal;
+  line-height: 1.1;
+  margin: 0 0 .5em; /* 0 0 26px */
+}
+
+h3 {
+  font-size: 1.25em; /* 20px/16px  */
+  color: #48525c;
+  line-height: 1.2;
+  margin-bottom: 1.7em; /* 34px */
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+ul,
+ol {
+  margin: 30px 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Pseudo-classes ------------------ */
+
+a:link {
+  color: rgb(255, 169, 73);
+  text-decoration: none;
+}
+
+a:visited {
+  color: lightblue;
+}
+
+a:hover {
+  color: rgba(255, 169, 73, .4);
+}
+
+a:active {
+  color: lightcoral;
+}
+
+/* Main Styles --------------------- */
+
+.main-header {
+  padding-top: 170px;
+  height: 850px;
+  background: #ffa949 url('../img/mountains.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.title {
+  color: white;
+  font-size: 1.625rem; /* 26px/16px */
+}
+
+.intro {
+  font-size: 1.25em; /* 20px/16px */
+  line-height: 1.6;
+}
+
+.primary-content,
+.main-header,
+.main-footer {
+  text-align: center;
+}
+
+.primary-content {
+  padding-top: 25px;
+  padding-bottom: 95px;
+}
+
+.secondary-content {
+  padding-top: 80px;
+  padding-bottom: 70px;
+  border-bottom: 2px solid #dfe2e6;
+}
+
+.callout {
+  font-size: 1.25em;
+  border-bottom: 3px solid;
+  padding: 0 9px 3px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.main-footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border-bottom: 10px solid #ffa949;
+}
+
+.t-border {
+  border-top: 2px solid #dfe2e6;
+}
+
+/* Layout Styles ------------------ */
+
+.primary-content,
+.secondary-content {
+  width: 75%;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+  max-width: 960px;
+}
+
+.wildlife {
+  color: white;
+  text-align: left;
+  padding: 18% 24%;
+  border-top: 10px solid #ffa949;
+  margin: 105px 0 60px;
+  background: #434a52 url('../img/bear.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.arrow {
+  width: 50px;
+}
+
+/* Floated Columns ------------------ */
+
+.resorts,
+.tips {
+  width: 46.5%;
+}
+
+.tips {
+  float: left;
+}
+
+.resorts {
+  float: right;
+}
+
+/* Float Clearfix ------------------ */
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
