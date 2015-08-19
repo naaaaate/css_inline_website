@@ -1,0 +1,496 @@
+/*
+text-shadow - lets u add drop shadows to text
+  -text-shadow: 0 1px 1px rgba(0,0,0,.8);  horizontal, vertical, blur applied, color-opacity
+  -if no set text color shadow it inherits text color by default
+  -can apply multiple text shadow values comma separated
+    -ie: markdotto 3d:
+
+---------------------------------------------------------------------------------------
+
+box-shadow - same as text shadow
+
+box-shadow: inset 0 0 50px 10px rgba(0,0,0, .8);
+  --horizontal right, vertical down, blur radius, color-opacity
+box shadows have no effect on layout of surrounding elements.. they have no influence on layout.
+4th length value in box shadow - spread value
+  --spread value - it moves the shadow away from the element equally in all directions!!
+  --can do cool things:
+    --- 0 15px 20px -12px rgba(0,0,0, .8);
+      x-offset or (horiz), vert, blur radius, spread
+      --this squeezes in box shadow and get subtle floating box effect at bottom.
+inset value - keyword must be first or last in box shadow or line is ignored..
+-inset will put box shadow inside the border of ur div element .. almost like an inner shadow..
+  --inset 20px 20px 5px rgba(0,0,0, 1);
+            h   v    bl
+  --u can also do an even on all sides inner shadow
+    --inset 0 0 50px 10px rgba(0,0,0, .8);
+       --50 is really blurry and 10 on all sides.
+       --gives nice inner shadow effect
+
+
+---------------------------------------------------------------------------------------
+Rounded Corners:
+-border-radius properties define how rounded u make it.
+top left, top right, bottom right, bottom left..
+
+border-radius: 10px; -sets even border radius all around.
+
+create rounded circle:
+-border-radius: 50%;
+-width and height have to be the same for round circle ie: 500px each;
+
+
+---------------------------------------------------------------------------------------
+Gradients:
+-add depth by creating smooth and gradual transitions bt 2 or more colors..
+-a gradient  is an image with absolute dimensions and no fixed size
+-the size of a gradient matches the size of the element it is applied to.
+-common use is backgrounds header backgrounds or certain ui elemnts..
+
+so lets create gradient in header that overlays the background image.
+in main header rule css - add background-image property - this will overide the current background image we defined.
+set a linear-gradient and define colors inside:
+
+background-image: linear-gradient(#ffa949, firebrick);
+--this creates a smooth fade from orange to firebrick red... from top to bottom..
+
+we can control angle and direction of gradient..
+gradient properties
+(to top, orange, red) - reverses color from red at top to orange at bottom.
+--the top to bottom flow is default.. so to top means start at bottom w orange and go to top w red
+(to left, orange, red) - gradient starts on right and ends on left side
+--start at right w orange and go to left w red.
+
+angle gradients:
+-these start at bottom and go clockwise.. bottom is 0deg
+-- (45deg, orange, red )
+---0 starts at bottom and goes top
+---45 starts at bottom left and goes to upper right corner
+---90 starts at left and goes right...
+
+radial gradients - start in middle and spiral out in circle.
+-it will be centered in header.
+
+background-image: radial-gradient(#ffa949, firebrick);
+
+background-image: radial-gradient(circle,#ffa949, firebrick);
+--can make a more circle shape instaed of default elipse.
+
+background-image: radial-gradient(circle at top, #ffa949, firebrick);
+--can also put circle at top to place gradient at top of header.
+
+background-image: radial-gradient(circle at top right, #ffa949, firebrick);
+--can add at top right.
+
+background-image: radial-gradient(circle at top right, #ffa949 0%, firebrick 50%, dodgerblue 100%);
+--can put in color stops at certain percentages from top right to bottom left.
+
+---------------------------------------------------------------------------------------
+we can layer multiple background images by separateing each image w commas
+we can also create transparent gradients and overlay on top of an image..
+
+Rememeber: multiple layers.. the first layer is the top most layer..;
+background: linear-gradient(orange, transparent 90%),
+--this will start orange at top and become fully transparent at 90% of the background.
+--transparent property is what allows image to show thru the gradient.
+
+            linear-gradient(0deg, white, transparent),
+            --we can blend white bakground of page with bottom half of the background image in the header here.
+              -so this starts at 0deg or the bottom and goes to top, starts at white color on bottom and becomes transparent on top.
+
+            url('img/mountains.jpg') no repeat center;
+
+---------------------------------------------------------------------------------------
+web fonts w @font-face
+-web fonts can be imported . optimized from screen ddispaly
+- linked to external source
+-can import w css
+
+@font-face rule
+
+@font-face {
+  font-family: 'Abolition Regular';
+  --name the font w font-family prop
+  --can name wutever we want.
+
+  EOT- embedded Open Type - ie9 compatibility mode
+  EOT iefix - displays in older versions of ie fix.
+  WOFF -Web open font format - newer format, mozilla, all modern browser supp, loads fast bc data in font is supressed.
+  TTF - true type format - safari, android, ios display
+
+  browser will only load and use the one it supports
+}
+
+to use the font we target it in an element like so:
+h1,
+h2 {
+  font-family: 'Abolition Regular', Helvetica, Arial, sans-serif;
+}
+
+
+letter-spacing
+can spread out letters..
+  letter-spacing: .065em;
+  font-weight: 200;
+
+  --font weight is being lightened.
+
+
+--------------------------------------------------------------------------------------
+Media Queries:
+style block w one or various conditions where if its true it takes effect
+
+@media () {  --all is default, print,screen,speech
+
+}
+
+@media (max-width: 960px) {  --max width of this rule is set to 960px, can use % or em
+                                -so when browser hits 960 or less these are applied:;
+  body {
+    background: lightblue;
+  }
+  p {
+    color: white;
+  }
+}
+
+@media (max-width: 480px) { --so anything 480 and below gets these rules..
+  body {
+    background: darkred;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 700px) { --so anything bt 481 and 700
+                                                      gets these rules..
+  body {
+    background: seagreen;
+  }
+  p {
+    color: white;
+  }
+}
+
+
+--------------------------------------------------------------------------------------
+Design for mobile layouts:
+/* Media Queries --------------------
+
+@media (max-width: 1024px) {
+  .primary-content,
+  .secondary-content {
+    width: 90%;  ------------when 1024 or less browser make these 90% of page
+  }
+  .wildlife {
+    padding: 10% 12%;
+    margin: 50px 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .primary-content,
+  .secondary-content {
+    width: 100%;
+    padding: 20px;
+    border-top: none;
+  }
+  .main-header {
+    max-height: 380px; ---------------adjust header height.
+    padding: 50px 25px 0;
+  }
+  .title {
+    font-size: 1.3rem; -----take it down the font size
+    border: none;
+  }
+  h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+  }
+  .arrow {
+    display: none;  ---------hide the arrow
+  }
+  .intro {
+    font-size: 1rem;
+  }
+  .resorts,
+  .tips {
+    float: none;
+    width: 100%;
+  }
+  .main-footer {
+    padding: 20px 0;
+  }
+}
+
+
+
+HTML MOBILE VIEW IN BROWSER:;
+to view your mobile view.. in html need to add:
+<meta name="viewport" content="width=device-width">
+
+that lets u zoom in and see how it will look exactly on mobile devices.
+
+
+
+
+
+
+*/
+
+
+/* Web Fonts -------------------- */
+
+@font-face {
+  font-family: 'Abolition Regular';
+  src: url('../fonts/abolition-regular-webfont.eot');
+  src: url('../fonts/abolition-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/abolition-regular-webfont.woff') format('woff'),
+       url('../fonts/abolition-regular-webfont.ttf') format('truetype');
+}
+
+/* Base Styles -------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #878787;
+  margin: 0;
+  font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'Abolition Regular', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 5.625rem; /* 90px/16px  */
+  color: rgba(255, 255, 255, 1);
+  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 1.3;
+  text-shadow: 0 1px 1px rgba(0,0,0,.8);
+  margin: 12px 0 0;
+}
+
+h2 {
+  font-size: 3.3125em; /* 53px/16px  */
+  font-weight: normal;
+  line-height: 1.1;
+  margin: 0 0 .5em; /* 0 0 26px */
+}
+
+h3 {
+  font-size: 1.25em; /* 20px/16px  */
+  color: #48525c;
+  line-height: 1.2;
+  margin-bottom: 1.7em; /* 34px */
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+ul,
+ol {
+  margin: 30px 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Pseudo-classes ------------------ */
+
+a:link {
+  color: rgb(255, 169, 73);
+  text-decoration: none;
+}
+
+a:visited {
+  color: lightblue;
+}
+
+a:hover {
+  color: rgba(255, 169, 73, .4);
+}
+
+a:active {
+  color: lightcoral;
+}
+
+/* Main Styles --------------------- */
+
+.main-header {
+  padding-top: 170px;
+  height: 850px;
+  background: linear-gradient(#ffa949, transparent 90%),
+              linear-gradient(0deg, #fff, transparent),
+              #ffa949 url('../img/mountains.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.title {
+  color: white;
+  font-size: 1.625rem; /* 26px/16px */
+  letter-spacing: .065em;
+  font-weight: 200;
+  border-bottom: 2px solid;
+  padding-bottom: 10px;
+}
+
+.intro {
+  font-size: 1.25em; /* 20px/16px */
+  line-height: 1.6;
+}
+
+.primary-content,
+.main-header,
+.main-footer {
+  text-align: center;
+}
+
+.primary-content {
+	padding-top: 25px;
+  padding-bottom: 95px;
+}
+
+.secondary-content {
+	padding-top: 80px;
+	padding-bottom: 70px;
+  border-bottom: 2px solid #dfe2e6;
+}
+
+.callout {
+  font-size: 1.25em;
+  border-bottom: 3px solid;
+  padding: 0 9px 3px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.main-footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border-bottom: 10px solid #ffa949;
+}
+
+.t-border {
+  border-top: 2px solid #dfe2e6;
+}
+
+/* Layout Styles ------------------ */
+
+.primary-content,
+.secondary-content {
+  width: 75%;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+  max-width: 960px;
+}
+
+.wildlife {
+  color: white;
+  text-align: left;
+  padding: 18% 24%;
+  border-top: 10px solid #ffa949;
+  margin: 105px 0 60px;
+  background: #434a52 url('../img/bear.jpg') no-repeat center;
+  background-size: cover;
+  box-shadow: inset 0 0 50px 10px rgba(0,0,0, .8);
+  border-radius: 10px;
+}
+
+.arrow {
+  width: 50px;
+  margin-top: 150px;
+}
+
+/* Floated Columns ------------------ */
+
+.resorts,
+.tips {
+  width: 46.5%;
+}
+
+.tips {
+  float: left;
+}
+
+.resorts {
+  float: right;
+}
+
+/* Float Clearfix ------------------ */
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Media Queries -------------------- */
+
+@media (max-width: 1024px) {
+  .primary-content,
+  .secondary-content {
+    width: 90%;
+  }
+  .wildlife {
+    padding: 10% 12%;
+    margin: 50px 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .primary-content,
+  .secondary-content {
+    width: 100%;
+    padding: 20px;
+    border-top: none;
+  }
+  .main-header {
+    max-height: 380px;
+    padding: 50px 25px 0;
+  }
+  .title {
+    font-size: 1.3rem;
+    border: none;
+  }
+  h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+  }
+  .arrow {
+    display: none;
+  }
+  .intro {
+    font-size: 1rem;
+  }
+  .resorts,
+  .tips {
+    float: none;
+    width: 100%;
+  }
+  .main-footer {
+    padding: 20px 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
