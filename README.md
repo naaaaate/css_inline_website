@@ -1,2 +1,1 @@
-# css_inline_website
-This site includes example of: a website using display: inline elements and some key fixes that cause display issues such as: White-space: nowrap, body/main-wrapper margin collapsing, negative margins for li's, and header padding.
+This Repo includes examples of: websites that incorporate examples of Positioning (relative, absolute, etc), Display (inline, inline-block, etc.), Floats (left, right, clearfix, group class, collapsing parent divs), FlexBox (display:flex, flex-grow, space ratio, etc.), Mobile First Layout Design (media queries), Absolute Centering (center an icon img inside of a div), Basic CSS Layouts (Box-Sizing, max-widths, background: color, img, no-repeat, center/cover, etc.).
